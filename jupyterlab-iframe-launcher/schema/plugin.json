@@ -3,6 +3,27 @@
   "title": "jupyterlab-iframe-launcher",
   "description": "jupyterlab-iframe-launcher settings.",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "url": {
+      "type": "string",
+      "default": "https://example.com",
+      "description": "The URL to be opened in the iframe"
+    },
+    "label": {
+      "type": "string",
+      "default": "Open iframe",
+      "description": "Title of launcher button"
+    },
+    "caption": {
+      "type": "string",
+      "default": "Open iframe in a new tab",
+      "description": "Caption of launcher button"
+    },
+    "rank": {
+      "type": "integer",
+      "default": 1,
+      "description": "Rank of launcher button"
+    }
+  },
   "additionalProperties": false
 }
