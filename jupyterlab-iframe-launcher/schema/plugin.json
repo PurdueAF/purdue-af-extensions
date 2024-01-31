@@ -1,0 +1,8 @@
+{
+  "jupyter.lab.shortcuts": [],
+  "title": "jupyterlab-iframe-launcher",
+  "description": "jupyterlab-iframe-launcher settings.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
