@@ -9,12 +9,22 @@ import { ICommandPalette } from '@jupyterlab/apputils';
 
 import { ILauncher } from '@jupyterlab/launcher';
 
+import { LabIcon } from '@jupyterlab/ui-components';
+
 const PALETTE_CATEGORY = 'Extensions';
 const LAUNCHER_CATEGORY = 'Other';
 
 namespace CommandIDs {
   export const open_iframe = 'jlab:open-iframe-from-launcher';
 }
+
+import grafanaSvgString from '../style/icons/grafana.svg';
+// Add more imports for other icon names
+
+const iconSvgMap: { [key: string]: string } = {
+  grafana: grafanaSvgString,
+  // Add more entries for other icon names
+};
 
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-iframe-launcher:plugin',
@@ -35,6 +45,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     let launcherItemLabel = 'Open iframe';
     let launcherItemCaption = 'Open iframe in a new tab';
     let launcherItemRank = 1;
+    let iconSvg = 'grafana';
 
     if (settingRegistry) {
       try {
@@ -51,18 +62,24 @@ const plugin: JupyterFrontEndPlugin<void> = {
         if ('rank' in settings.composite) {
           launcherItemRank = parseInt(settings.composite['rank'] as string, 10) || launcherItemRank;
         }
+        if ('icon_svg' in settings.composite) {
+          iconSvg = settings.composite['icon_svg'] as string;
+        }
         console.log('jupyterlab-iframe-launcher settings loaded:', settings.composite);
       } catch (reason) {
         console.error('Failed to load settings for jupyterlab-iframe-launcher.', reason);
       }
     }
 
-    
+    const icon = new LabIcon({
+      name: 'launcher:${iconSvg}-icon',
+      svgstr: iconSvgMap[iconSvg]
+    });
+
     commands.addCommand(command, {
       label: launcherItemLabel,
       caption: launcherItemCaption,
-      icon: undefined,
-      // icon: args => (args['isPalette'] ? undefined : icon),
+      icon: icon,
       execute: async args => {
         await commands.execute('iframe:open', { path:url });
       }
