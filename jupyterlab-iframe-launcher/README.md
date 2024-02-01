@@ -1,7 +1,7 @@
 # jupyterlab_iframe_launcher
 
 [![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/build.yml)
-Adds a custom iframe item that opens an iframe when clicked.
+Adds a custom launcher item that opens an iframe when clicked.
 
 ## Requirements
 
@@ -22,8 +22,21 @@ To remove the extension, execute:
 ```bash
 pip uninstall jupyterlab_iframe_launcher
 ```
+## Configure
 
-## Contributing
+Configuration should be defined in `~/.jupyter/lab/user-settings/jupyterlab-iframe-launcher/plugin.jupyterlab-settings`. Here is an example of `plugin.jupyterlab-settings` contents:
+
+```json
+{
+    "url": "https://<url>",
+    "label": "Monitoring",
+    "caption": "Open grafana dashboard",
+    "rank": 0,
+    "icon_svg": "grafana"
+}
+```
+
+<!-- ## Contributing -->
 
 ### Development install
 
