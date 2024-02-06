@@ -5,7 +5,7 @@ import {
 
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
-import { ICommandPalette } from '@jupyterlab/apputils';
+import { ICommandPalette, IThemeManager } from '@jupyterlab/apputils';
 
 import { ILauncher } from '@jupyterlab/launcher';
 
@@ -24,16 +24,25 @@ const plugin: JupyterFrontEndPlugin<void> = {
   id: 'purdue-af-grafana-iframe:plugin',
   description: 'Adds a custom iframe item that opens an iframe when clicked.',
   autoStart: true,
-  optional: [ISettingRegistry, ILauncher, ICommandPalette],
+  optional: [ISettingRegistry, ILauncher, ICommandPalette, IThemeManager],
   activate: async (
     app: JupyterFrontEnd,
     settingRegistry: ISettingRegistry | null,
     launcher: ILauncher | null,
-    palette: ICommandPalette | null
+    palette: ICommandPalette | null,
+    themeManager: IThemeManager | null
   ) => {
     const { commands } = app;
     const command = CommandIDs.open_iframe;
     console.log('JupyterLab extension purdue-af-grafana-iframe is activated!');
+
+    console.log("Theme manager: ", themeManager)
+    if (themeManager) {
+      console.log("Theme: ", themeManager.theme)
+    }
+    if (themeManager && themeManager.theme) {
+      console.log("isLight: ", themeManager.isLight(themeManager.theme))
+    }
 
     let url = '';
     let launcherItemLabel = 'Open iframe';
