@@ -1,0 +1,8 @@
+{
+  "jupyter.lab.shortcuts": [],
+  "title": "purdue-af-grafana-iframe",
+  "description": "purdue-af-grafana-iframe settings.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
