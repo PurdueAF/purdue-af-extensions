@@ -23,6 +23,21 @@ To remove the extension, execute:
 pip uninstall purdue_af_grafana_iframe
 ```
 
+## Configure
+
+Configuration should be defined in `~/.jupyter/lab/user-settings/purdue-af-grafana-iframe/plugin.jupyterlab-settings`. Here is an example of `plugin.jupyterlab-settings` contents:
+
+```json
+{
+    # url of a Grafana panel
+    # (click top-right of Grafana panel, then Share -> Embed)
+    "url": "https://<url>", 
+    "label": "Monitoring",
+    "caption": "Open grafana dashboard",
+    "rank": 0
+}
+```
+
 ## Contributing
 
 ### Development install
