@@ -36,14 +36,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
     const command = CommandIDs.open_iframe;
     console.log('JupyterLab extension purdue-af-grafana-iframe is activated!');
 
-    console.log("Theme manager: ", themeManager)
-    if (themeManager) {
-      console.log("Theme: ", themeManager.theme)
-    }
-    if (themeManager && themeManager.theme) {
-      console.log("isLight: ", themeManager.isLight(themeManager.theme))
-    }
-
     let url = '';
     let launcherItemLabel = 'Open iframe';
     let launcherItemCaption = 'Open iframe in a new tab';
@@ -68,6 +60,23 @@ const plugin: JupyterFrontEndPlugin<void> = {
       } catch (reason) {
         console.error('Failed to load settings for purdue-af-grafana-iframe.', reason);
       }
+    }
+
+    const isLight =
+    themeManager && themeManager.theme
+      ? themeManager.isLight(themeManager.theme)
+      : true;
+    console.log("Theme manager: ", themeManager)
+    console.log("isLight: ", isLight)
+
+    if (url.includes("&theme=")) {
+        url = url.replace(/&theme=(light|dark)/, "");
+    }
+    
+    if (isLight) {
+        url += "&theme=light";
+    } else {
+        url += "&theme=dark";
     }
 
     const icon = new LabIcon({
