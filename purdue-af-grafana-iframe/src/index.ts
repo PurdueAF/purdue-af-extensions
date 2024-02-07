@@ -76,8 +76,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
       } else {
           url += "&theme=dark";
       }
-
-      console.log(url);
     });
 
     const icon = new LabIcon({
