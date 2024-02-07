@@ -34,6 +34,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     commands.addCommand(command, {
       label: 'Shut Down',
       caption: 'Shut down user session',
+      className: 'jp-RunningSessions-shutdownAll',
       execute: (args: any) => {
         return showDialog({
           title: 'Shut down Analysis Facility session',
