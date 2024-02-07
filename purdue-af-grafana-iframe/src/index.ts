@@ -75,6 +75,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
         let iframeSrc = iframe.getAttribute('src') || '';
         iframeSrc = updateUrlTheme(iframeSrc, isLight);
         iframe.setAttribute('src', iframeSrc);
+        iframe.src = iframe.src;
       });
     });
 
