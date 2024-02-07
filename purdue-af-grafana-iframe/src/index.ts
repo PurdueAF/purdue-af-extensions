@@ -67,15 +67,15 @@ const plugin: JupyterFrontEndPlugin<void> = {
       themeManager && themeManager.theme
         ? themeManager.isLight(themeManager.theme)
         : true;
-  
-      if (url.includes("&theme=")) {
-          url = url.replace(/&theme=(light|dark)/, "");
-      }
-      if (isLight) {
-          url += "&theme=light";
-      } else {
-          url += "&theme=dark";
-      }
+
+      url = updateUrlTheme(url, isLight);
+
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach(iframe => {
+        let iframeSrc = iframe.getAttribute('src') || '';
+        iframeSrc = updateUrlTheme(iframeSrc, isLight);
+        iframe.setAttribute('src', iframeSrc);
+      });
     });
 
     const icon = new LabIcon({
@@ -110,5 +110,17 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
   }
 };
+
+function updateUrlTheme(url: string, isLight: boolean) {
+  if (url.includes("&theme=")) {
+    url = url.replace(/&theme=(light|dark)/, "");
+  }
+  if (isLight) {
+    url += "&theme=light";
+  } else {
+    url += "&theme=dark";
+  }
+  return url;
+}
 
 export default plugin;
