@@ -62,22 +62,23 @@ const plugin: JupyterFrontEndPlugin<void> = {
       }
     }
 
-    const isLight =
-    themeManager && themeManager.theme
-      ? themeManager.isLight(themeManager.theme)
-      : true;
-    console.log("Theme manager: ", themeManager)
-    console.log("isLight: ", isLight)
+    themeManager?.themeChanged.connect((sender, args) => {
+      const isLight =
+      themeManager && themeManager.theme
+        ? themeManager.isLight(themeManager.theme)
+        : true;
+  
+      if (url.includes("&theme=")) {
+          url = url.replace(/&theme=(light|dark)/, "");
+      }
+      if (isLight) {
+          url += "&theme=light";
+      } else {
+          url += "&theme=dark";
+      }
 
-    if (url.includes("&theme=")) {
-        url = url.replace(/&theme=(light|dark)/, "");
-    }
-    
-    if (isLight) {
-        url += "&theme=light";
-    } else {
-        url += "&theme=dark";
-    }
+      console.log(url);
+    });
 
     const icon = new LabIcon({
       name: 'launcher:grafana-icon',
