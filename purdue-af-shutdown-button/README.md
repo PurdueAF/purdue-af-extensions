@@ -1,7 +1,21 @@
 # purdue_af_shutdown_button
 
-[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/build.yml)
 Adds a shutdown button to JupyterLab top-bar.
+
+To enable the button, the file `.jupyter/lab/user-settings/@jupyterlab/application-extension/top-bar.jupyterlab-settings` should contain the following:
+
+```json
+{
+    "toolbar": [
+        {
+            "name": "shutdown",
+            "command": "jupyterlab-topbar:shutdown",
+            "disabled": false,
+            "rank": 100
+        }
+    ]
+}
+```
 
 ## Requirements
 
