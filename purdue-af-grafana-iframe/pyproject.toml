@@ -22,10 +22,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-urls = { "Homepage" = "https://github.com/PurdueAF/purdue-af-extensions/tree/master/purdue-af-grafana-iframe" }
 dependencies = [
 ]
-dynamic = ["version", "description", "authors", "keywords"]
+dynamic = ["version", "description", "authors", "urls", "keywords"]
 
 [tool.hatch.version]
 source = "nodejs"

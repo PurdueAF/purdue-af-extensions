@@ -7,10 +7,6 @@
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "",
-    "bugs": {
-        "url": "/issues"
-    },
     "license": "BSD-3-Clause",
     "author": {
         "name": "Dmitry Kondratyev",
@@ -27,7 +23,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": ".git"
+        "url": "https://github.com/PurdueAF/purdue-af-extensions.git"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
