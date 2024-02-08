@@ -73,7 +73,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
       const iframes = document.querySelectorAll('iframe');
       iframes.forEach(iframe => {
         let iframeSrc = iframe.getAttribute('src') || '';
-        console.log(iframeSrc)
         if (iframeSrc.includes("grafana")) {
           iframeSrc = updateUrlTheme(iframeSrc, isLight);
           iframe.setAttribute('src', iframeSrc);

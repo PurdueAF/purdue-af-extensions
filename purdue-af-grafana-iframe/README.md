@@ -1,11 +1,28 @@
 # purdue_af_grafana_iframe
 
-[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/build.yml)
-Adds a button to the launcher, which opens an iframe with a Grafana dashboard.
+Adds a button to the launcher, which opens an iframe with a Grafana panel.
+
+
+Compatible with [jupyterlab-theme-toggle extension](https://github.com/jupyterlab-contrib/jupyterlab-topbar/tree/main/packages/theme-toggler-extension).
+
+
+The extension is configured in `~/.jupyter/lab/user-settings/purdue-af-grafana-iframe/plugin.jupyterlab-settings`. Here is an example of `plugin.jupyterlab-settings` contents:
+
+```json
+{
+    # url of a Grafana panel; to find the correct url,
+    # click top-right of Grafana panel, then Share -> Embed
+    "url": "https://<url>", 
+    "label": "Monitoring",
+    "caption": "Open grafana dashboard",
+    "rank": 0
+}
+```
 
 ## Requirements
 
 - JupyterLab >= 4.0.0
+- jupyterlab_iframe == 0.5.0
 
 ## Install
 
@@ -23,20 +40,6 @@ To remove the extension, execute:
 pip uninstall purdue_af_grafana_iframe
 ```
 
-## Configure
-
-Configuration should be defined in `~/.jupyter/lab/user-settings/purdue-af-grafana-iframe/plugin.jupyterlab-settings`. Here is an example of `plugin.jupyterlab-settings` contents:
-
-```json
-{
-    # url of a Grafana panel
-    # (click top-right of Grafana panel, then Share -> Embed)
-    "url": "https://<url>", 
-    "label": "Monitoring",
-    "caption": "Open grafana dashboard",
-    "rank": 0
-}
-```
 
 ## Contributing
 
