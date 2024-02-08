@@ -18,7 +18,7 @@ import '../style/index.css';
 
 
 const plugin: JupyterFrontEndPlugin<void> = {
-  id: 'jupyterlab-shutdown:plugin',
+  id: 'purdue-af-shutdown-button:plugin',
   description: 'Adds a button that shuts down Jupyter server',
   autoStart: true,
   requires: [IRouter],
@@ -26,7 +26,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     app: JupyterFrontEnd,
     router: IRouter
   ) => {
-    console.log('JupyterLab extension jupyterlab-shutdown is activated!');
+    console.log('JupyterLab extension purdue-af-shutdown-button is activated!');
     const { commands } = app;
     const namespace = 'jupyterlab-topbar';
     const command = namespace + ':shutdown';
@@ -91,3 +91,4 @@ const plugin: JupyterFrontEndPlugin<void> = {
 };
 
 export default plugin;
+

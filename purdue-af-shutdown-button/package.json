@@ -1,16 +1,12 @@
 {
-    "name": "jupyterlab-shutdown",
+    "name": "purdue-af-shutdown-button",
     "version": "0.1.0",
-    "description": "Adds a button that shuts down Jupyter server",
+    "description": "Adds a shutdown button to JupyterLab top-bar.",
     "keywords": [
         "jupyter",
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "",
-    "bugs": {
-        "url": "/issues"
-    },
     "license": "BSD-3-Clause",
     "author": {
         "name": "Dmitry Kondratyev",
@@ -26,7 +22,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": ".git"
+        "url": "https://github.com/PurdueAF/purdue-af-extensions.git"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
@@ -38,7 +34,7 @@
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
-        "clean:labextension": "rimraf jupyterlab_shutdown/labextension jupyterlab_shutdown/_version.py",
+        "clean:labextension": "rimraf purdue_af_shutdown_button/labextension purdue_af_shutdown_button/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
@@ -91,7 +87,7 @@
     },
     "jupyterlab": {
         "extension": true,
-        "outputDir": "jupyterlab_shutdown/labextension"
+        "outputDir": "purdue_af_shutdown_button/labextension"
     },
     "eslintIgnore": [
         "node_modules",

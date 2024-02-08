@@ -8,11 +8,11 @@ file_extension: ''
 has_binder: false
 has_settings: false
 kind: frontend
-labextension_name: jupyterlab-shutdown
+labextension_name: purdue-af-shutdown-button
 mimetype: ''
 mimetype_name: ''
-project_short_description: Adds a button that shuts down Jupyter server
-python_name: jupyterlab_shutdown
+project_short_description: Adds a shutdown button to JupyterLab top-bar.
+python_name: purdue_af_shutdown_button
 repository: ''
 test: false
 viewer_name: ''

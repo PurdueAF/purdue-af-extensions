@@ -1,4 +1,4 @@
-# Making a new release of jupyterlab_shutdown
+# Making a new release of purdue_af_shutdown_button
 
 The extension can be published to `PyPI` and `npm` manually or using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
 
