@@ -8,7 +8,7 @@ Compatible with [jupyterlab-theme-toggle extension](https://github.com/jupyterla
 
 The extension is configured in `~/.jupyter/lab/user-settings/purdue-af-grafana-iframe/plugin.jupyterlab-settings`. Here is an example of `plugin.jupyterlab-settings` contents:
 
-```json
+```python
 {
     # url of a Grafana panel; to find the correct url,
     # click top-right of Grafana panel, then Share -> Embed
