@@ -42,7 +42,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     console.log('JupyterLab extension purdue-af-vscode-button is activated!');
 
     app.commands.addCommand(SWITCH_TO_VSCODE_COMMAND, {
-      label: '↗ Switch to VSCode',
+      label: '↗ Open VSCode',
       caption: 'Open code-server (VS Code) in a new browser tab',
       execute: () => {
         const settings = ServerConnection.makeSettings();

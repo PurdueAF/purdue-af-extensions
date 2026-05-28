@@ -1,6 +1,6 @@
 {
     "name": "purdue-af-vscode-button",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Adds a VS Code topbar button to JupyterLab.",
     "keywords": [
         "jupyter",
