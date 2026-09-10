@@ -9,8 +9,21 @@ except ImportError:
     __version__ = "dev"
 
 
+from .handlers import setup_handlers
+
+
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
         "dest": "purdue-af-shutdown-button"
     }]
+
+
+def _jupyter_server_extension_points():
+    return [{"module": "purdue_af_shutdown_button"}]
+
+
+def _load_jupyter_server_extension(server_app):
+    """Register the endpoint the button posts to."""
+    setup_handlers(server_app.web_app)
+    server_app.log.info("Registered purdue_af_shutdown_button server extension")
