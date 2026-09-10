@@ -13,6 +13,7 @@ pod running and reports the session as healthy while nothing answers on it.
 
 import json
 import os
+from urllib.parse import quote
 
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
@@ -27,10 +28,11 @@ def hub_server_url() -> str:
     if not api_url or not user:
         return ""
     # A named server has its own endpoint; the default server has none.
-    parts = ["users", user, "server"]
+    # Quote: a username the Hub allows may still need escaping in a path.
+    parts = ["users", quote(user, safe=""), "server"]
     server_name = os.environ.get("JUPYTERHUB_SERVER_NAME")
     if server_name:
-        parts.append(server_name)
+        parts.append(quote(server_name, safe=""))
     return url_path_join(api_url, *parts)
 
 
@@ -60,15 +62,22 @@ class StopServerHandler(APIHandler):
             )
         except HTTPClientError as e:
             if e.code == 403:
-                # The server's own token is not allowed to stop it unless the
-                # Hub grants the `servers!server` scope to the `server` role.
+                # DELETE /users/<name>/server is @needs_scope('delete:servers'),
+                # and the `server` role does not carry it by default.
                 raise web.HTTPError(
                     403,
                     "The Hub refused: this server's token may not stop it. "
-                    "Grant the 'servers!server' scope to the 'server' role.",
+                    "Grant 'delete:servers!server' to the 'server' role.",
                 ) from e
+            # 599 is tornado's own code for a timeout or a refused connection.
+            # It is not an HTTP status and must not be passed off as one.
+            code = 502 if e.code >= 500 else e.code
             raise web.HTTPError(
-                e.code, f"The Hub refused to stop the server: {e}"
+                code, f"Could not reach the Hub to stop the server: {e}"
+            ) from e
+        except Exception as e:
+            raise web.HTTPError(
+                502, f"Could not reach the Hub to stop the server: {e}"
             ) from e
 
         self.finish(json.dumps({"stopped": True}))

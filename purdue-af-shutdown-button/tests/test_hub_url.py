@@ -61,3 +61,14 @@ def test_a_username_needing_escaping_is_not_mangled(monkeypatch):
 def test_no_hub_means_no_url(monkeypatch, env):
     """Outside JupyterHub there is nothing to stop; say so rather than guess."""
     assert handlers(monkeypatch, **env).hub_server_url() == ""
+
+
+def test_a_username_with_an_at_sign_is_escaped(monkeypatch):
+    """The Hub accepts usernames that are not path-safe; an unescaped one
+    produces a URL the Hub answers 404 to, and the button reports failure."""
+    mod = handlers(
+        monkeypatch,
+        JUPYTERHUB_API_URL="http://hub:8081/hub/api",
+        JUPYTERHUB_USER="user@cern.ch",
+    )
+    assert mod.hub_server_url().endswith("/users/user%40cern.ch/server")
