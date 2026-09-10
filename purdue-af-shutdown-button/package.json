@@ -1,6 +1,6 @@
 {
     "name": "purdue-af-shutdown-button",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Adds a shutdown button to JupyterLab top-bar.",
     "keywords": [
         "jupyter",
